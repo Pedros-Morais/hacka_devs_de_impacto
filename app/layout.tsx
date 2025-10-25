@@ -25,11 +25,9 @@ export default function RootLayout({
             {/* Logo + título */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Image src={logo} alt="RotaSocial" width={28} height={28} className="navbar-logo" />
-              <div className="navbar-title">RotaSocial</div>
+              <div className="navbar-title" title="RotaSocial">RotaSocial</div>
             </div>
-            <div className="navbar-actions">
-              <a className="navbar-link" href="#">Demandas</a>
-            </div>
+            {/* Removido link 'Demandas' conforme solicitação */}
           </div>
         </header>
         {children}

@@ -144,13 +144,22 @@ async function seedDemands(count) {
   return data.map(d => d.id);
 }
 
+const ptChatSamples = [
+  'Olá! Poderia me ajudar com transporte para a consulta?',
+  'Bom dia! Temos exame amanhã, consegue apoio?',
+  'Obrigado pelo retorno! Podemos combinar para terça?',
+  'Podemos falar por aqui? Qual o melhor horário?',
+  'Conseguimos vaga na clínica, preciso confirmar horário.',
+  'Tudo bem? Preciso de ajuda com reforço escolar.'
+];
 async function seedMessages(demandIds) {
   const rows = [];
   demandIds.slice(0, Math.min(30, demandIds.length)).forEach((id) => {
     const mCount = faker.number.int({ min: 1, max: 3 });
     rows.push({ demand_id: id, sender: 'sistema', content: 'Demanda registrada no sistema.' });
     for (let i = 0; i < mCount; i++) {
-      rows.push({ demand_id: id, sender: 'familia', content: faker.lorem.sentence() });
+      const sample = ptChatSamples[faker.number.int({ min: 0, max: ptChatSamples.length - 1 })];
+      rows.push({ demand_id: id, sender: 'familia', content: sample });
     }
   });
   if (rows.length > 0) {
